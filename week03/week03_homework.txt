@@ -1,9 +1,0 @@
-
-
-build a database of user in the session.
-	- have a create acc function
-	- it adds to the database
-	- if using existing login info, it logs them in
-
-have a successful login page
-have a failed login page
