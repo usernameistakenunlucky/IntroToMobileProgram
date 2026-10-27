@@ -31,3 +31,9 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Only upload LoginAppProject
+assets/
+week01/
+week02/
+week03/
