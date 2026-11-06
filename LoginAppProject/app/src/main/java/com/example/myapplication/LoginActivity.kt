@@ -28,21 +28,6 @@ class LoginActivity : AppCompatActivity()
         val signUpLink = findViewById<Button>(R.id.signUpLink_id)
         val loginError = findViewById<TextView>(R.id.loginErrorText_id)
 
-        loginButton.setOnClickListener()
-        {
-            val found = AppData.users.find {
-                it.email == emailInput.text.toString() &&
-                        it.password == passwordInput.text.toString()
-            }
-
-            if (found != null)
-            {
-                val intent = Intent(this, WelcomeActivity::class.java)
-                intent.putExtra("name", found.name)
-                startActivity(intent)
-            }
-        }
-
         signUpLink.setOnClickListener()
         {
             val intent = Intent(this, SignUpActivity::class.java)
@@ -60,8 +45,11 @@ class LoginActivity : AppCompatActivity()
             {
                 loginError.visibility = View.GONE
 
-                val intent = Intent(this, WelcomeActivity::class.java)
-                intent.putExtra("name", found.name)
+                AppData.currentUser = found
+
+                val intent = Intent(this, HomeActivity::class.java)
+
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }
             else

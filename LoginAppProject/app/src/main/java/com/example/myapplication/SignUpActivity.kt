@@ -25,19 +25,6 @@ class SignUpActivity : AppCompatActivity()
 
         signUpButton.setOnClickListener()
         {
-            val newUser = User(
-                usernameInput.text.toString(),
-                emailInput.text.toString(),
-                passwordInput.text.toString()
-            )
-
-            val intent = Intent(this, WelcomeActivity::class.java)
-            intent.putExtra("name", newUser.name)
-            startActivity(intent)
-        }
-
-        signUpButton.setOnClickListener()
-        {
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
             val emailTaken = AppData.users.any { it.email == email }
@@ -57,8 +44,11 @@ class SignUpActivity : AppCompatActivity()
                 val newUser = User(usernameInput.text.toString(), email, password)
                 AppData.users += newUser
 
-                val intent = Intent(this, WelcomeActivity::class.java)
-                intent.putExtra("name", newUser.name)
+                AppData.currentUser = newUser
+
+                val intent = Intent(this, HomeActivity::class.java)
+
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }
         }

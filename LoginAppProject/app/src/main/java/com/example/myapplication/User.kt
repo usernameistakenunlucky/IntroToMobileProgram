@@ -9,6 +9,9 @@ class User()
     lateinit var password: String
     lateinit var id: UUID
 
+    // every user owns their own list
+    var items: ArrayList<Item> = arrayListOf()
+
     constructor (name: String,
                  email: String,
                  password: String,
